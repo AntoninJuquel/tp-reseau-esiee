@@ -1,3 +1,4 @@
+https://www.youtube.com/live/ct8Uw5nBkk4?feature=share
 # Compte rendu de tp
 
 ## Exercice 1
