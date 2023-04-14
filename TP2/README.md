@@ -45,4 +45,26 @@ Cache-Control: no-cache
 
 La taille de la réponse est de 231 octets. La version du protocole utilisée par le serveur est "HTTP/1.1".
 
+## TCP
 
+Toutes les connexions TCP établies entre le client et le serveur sont les suivantes :
+
+![tcp ack](screenshots/tcp-ack.png)
+
+Le numéro de port source dans l'en-tête TCP est 443, tandis que le numéro de port de destination est 46428.
+
+On l'obtient grace au filtre : tcp.flags.syn == 1 and tcp.flags.ack == 1
+
+Le protocole TCP utilise un mécanisme en trois étapes appelé "Three-way handshake" pour établir une connexion fiable entre deux hôtes sur un réseau.
+- SYN : Le client envoie un paquet SYN (synchronisation) au serveur
+- SYN-ACK : Le serveur répond avec un paquet SYN-ACK
+- ACK : Le client envoie un paquet ACK
+
+Lorsque le client et le serveur échangent les commandes SYN pour établir une connexion TCP, ils se communiquent des informations importantes pour cette connexion, comme les numéros de port source et destination, le numéro de séquence initial (ISN) et la quantité maximale de données qui peuvent être envoyées dans un seul paquet (appelé MSS).
+
+![isn](screenshots/isn.png)
+
+Le numéro de séquence initial (ISN) côté serveur est 3477120536 et le MSS est 1360 bytes
+Et côté client le MSS 1460 bytes et l'ISN est 4231728188.
+
+![client server](screenshots/client-server.png)
