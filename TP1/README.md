@@ -167,17 +167,39 @@ Router(config-if)#no shutdown
 ![Routeur](screenshots/router0-arp1.png)
 
 ## Exercice 7 : configuration de la liaison série entre deux routeurs 
-Vous allez copier/coller le réseau configuré et modifier les identifiants IP des machines et des routeurs afin de 
-former le réseau du deuxième site. 
-Vous utilisez d’un câble back-to-back DCE-DTE respectant la norme X21. Ce câble permet de simuler une liaison WAN 
-entre vos deux routeurs selon le schéma défini dans l’exercice 1. Connectez ce câble aux deux routeurs par le biais 
-des interfaces séries.   
-1. Identifiez les côtés DCE et DTE de la liaison, en utilisant la commande : Router#sh controllers serial x/y  
-2. Pourquoi est-il nécessaire d’avoir dans le câble une partie DCE et une autre partie DTE ?
-3. Configurez l’adresse IP de chaque interface du routeur reliée au câble WAN ? Vérifiez qu’elle n’est pas hors service (shutdown).  
+1. À l'aide de la commande "sh controller Serial2/0" sur chaque routeur on identifie que la liaison DTE-DCE est configurée sur le routeur 0 et la liaison DCE-DTE est configurée sur le routeur 1.
+
+![Routeur0](screenshots/router0-serial2.png)
+![Routeur1](screenshots/router1-serial2.png)
+
+2. Il est nécessaire d'avoir une partie DCE (Data Communications Equipment) et une partie DTE (Data Terminal Equipment) dans le câble pour permettre la connexion entre les deux routeurs. La partie DCE fournit l'horloge pour la transmission des données tandis que la partie DTE est l'équipement terminal qui envoie et reçoit les données. Cette configuration permet d'assurer une synchronisation précise entre les équipements et de minimiser les erreurs de transmission de données.
+3. 
+- On configure l'adresse Ip sur l'interface Serial2/0 du routeur 0 de la manière suivante:
+  - Adresse IP : 192.168.30.1
+  - Masque de sous-réseau : 255.255.255.0
+
+- On configure l'adresse Ip sur l'interface Serial2/0 du routeur 1 de la manière suivante:
+  - Adresse IP : 192.168.30.2
+  - Masque de sous-réseau : 255.255.255.0 
 4. Configurez l’ensemble des points liés au fait d’avoir une partie DTE et une partie DCE sur votre câble (horloge, encapsulation niveau 2, ...).  
-5. Pour l’instant, le routeur n’a aucune connaissance de la « route » qu’il doit faire suivre aux paquets destinés au LAN d’en face. Pour vérifier ceci, faites un ping d’une machine de votre LAN sur une machine du LAN d’en face.  
-6. Configurez les routeurs afin de relier les 2 LAN en accord avec l’architecture proposée dans l’exercice 1 (c.à.d. donnez une route statique au routeur permettant d’atteindre le LAN d’en face). Ne pas oubliez d’activer le routage ip.
-7. Vérifiez la connectivité entre les PCs terminaux. Que contient la table ARP ?   
-8. Vérifier et donner les tables de routage sur votre routeur ?  
+5. ![PingFail](screenshots/ping-external-fail.png)  
+6. 
+On configure les route static sur les deux routeurs pour permettre la communication entre les deux sous-réseaux.  
+
+![Routeur0](screenshots/router0-static-route.png)
+![Routeur1](screenshots/router1-static-route.png)
+
+7. On vérifie la connectivité entre PC10 et PC0 avec la commande "ping 192.168.10.2" depuis le terminal de PC10. On peut voir que la communication fonctionne.
+
+![PingSuccess](screenshots/ping-external-success.png)
+
+On remarque que les tables ARP du routeur 0 et routeur 1 n'ont pas changées
+
+![Routeur0](screenshots/router0-arp2.png)
+![Routeur1](screenshots/router1-arp2.png)
+
+8. On vérifie les tables de routage des deux routeurs avec la commande "show ip route". On peut voir que les deux routeurs ont bien appris la route vers le sous-réseau
+
+![Routeur0](screenshots/router0-route2.png)
+![Routeur1](screenshots/router1-route2.png)
  
