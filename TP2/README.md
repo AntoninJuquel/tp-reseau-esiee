@@ -68,3 +68,16 @@ Le numéro de séquence initial (ISN) côté serveur est 3477120536 et le MSS es
 Et côté client le MSS 1460 bytes et l'ISN est 4231728188.
 
 ![client server](screenshots/client-server.png)
+
+## IP
+
+Les segments TCP sont encapsulés dans des paquets IP en utilisant le protocole Internet Protocol version 4 (IPv4). Dans le champ "Protocol" de l'en-tête IPv4, le numéro 6 indique que le protocole suivant est TCP. Le segment TCP est alors encapsulé dans les données du paquet IP.
+
+Les adresses IP de ces paquets sont les suivantes :
+
+    Adresse IP source : 34.120.208.123
+    Adresse IP de destination : 172.20.10.8
+
+En cliquant sur les packets de type SYN on trouve 60 octets.
+
+![length](screenshots/length.png)
