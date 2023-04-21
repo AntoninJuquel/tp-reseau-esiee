@@ -1,5 +1,7 @@
-https://www.youtube.com/live/ct8Uw5nBkk4?feature=share
-# Compte rendu de tp
+# Compte rendu du TP sur Packet Tracer
+
+### Antonin Juquel, Raj Porus Hiruthayaraj
+
 
 ## Exercice 1
 ### Solution technique proposée
